@@ -4,6 +4,9 @@ Udacity Self-Driving Car Nanodegree Term 2, Project 5
 ## Project Basics
 Using Model Predictive Control (MPC), this project involves writing a C++ program that can drive a simulated car around a virtual track using specific waypoints from the track itself. The simulated car's actuators have a 100ms latency (delay) that must be accounted for as well as part of the MPC calculation.
 
+使用模型预测控制（MPC），该项目涉及编写一个C++程序，该程序可以使用轨道本身的特定航路点，在虚拟轨道上驾驶模拟汽车。模拟汽车的执行器有100毫秒的延迟（延迟），这是MPC计算的一部分。
+ 
+
 ### Project Steps
 * Fitting a line based on road waypoints and evaluating the current state based on that polynomial line.
 * Implementing the MPC calculation, including setting variables and constraints
@@ -12,6 +15,20 @@ Using Model Predictive Control (MPC), this project involves writing a C++ progra
 * Calculating steering angle & throttle/brake based on the actuator values
 * Setting timestep length and duration
 * Testing/tuning of above implementations on Udacity simulator
+
+*基于道路航路点拟合直线，并基于该多项式直线评估当前状态。
+
+*执行MPC计算，包括设置变量和约束
+
+*根据当前状态从MPC计算中计算执行器值
+
+*考虑延迟（我使用未来100毫秒的预测状态来替换计算中的实际当前状态）
+
+*根据执行器值计算转向角和油门/制动器
+
+*设置时间步长长度和持续时间
+
+*在Udacity模拟器上测试/调整上述实现
 
 ### Results
 See video of the results from my implementation [here](MPC_vid.mov). The car is able to approach speeds of nearly 100 mph, with only a few hitches in its planned route (which it self-corrects for in the following timestep).
