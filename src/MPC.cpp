@@ -8,8 +8,10 @@ using CppAD::AD;
 
 // Set the timestep length and duration
 // Currently tuned to predict 1 second worth
-size_t N = 10;
-double dt = 0.1;
+//设置时间步长长度和持续时间
+//目前已调整为预测1秒价值
+size_t N = 10;//10
+double dt = 0.1;//0.1
 
 // This value assumes the model presented in the classroom is used.
 //
@@ -21,10 +23,22 @@ double dt = 0.1;
 // presented in the classroom matched the previous radius.
 //
 // This is the length from front to CoG that has a similar radius.
+//该值假定使用课堂上呈现的模型。
+//
+//它是通过测量车辆在行驶过程中形成的半径获得的
+//模拟器以恒定的转向角和速度绕着一个圆圈旋转
+//地势平坦。
+//
+//Lf被调谐，直到模拟模型形成半径
+//在教室里展示的与之前的半径相符。
+//
+//这是从前端到具有相似半径的齿轮的长度。
+ 
 const double Lf = 2.67;
 
 // Set desired speed for the cost function (i.e. max speed)
-const double ref_v = 120;
+//设置成本函数的期望速度（即最大速度）
+const double ref_v = 200;//120
 
 // The solver takes all the state variables and actuator
 // variables in a singular vector. Thus, we should to establish
@@ -57,6 +71,8 @@ class FG_eval {
     // any anything you think may be beneficial.
     
     // Weights for how "important" each cost is - can be tuned
+    //每个成本的“重要性”权重可以调整
+ 
     const int cte_cost_weight = 2000;
     const int epsi_cost_weight = 2000;
     const int v_cost_weight = 1;
