@@ -249,7 +249,9 @@ int main() {
           auto msg = "42[\"steer\"," + msgJson.dump() + "]";
           //文件输出
           ofstream  mpcout;
-          mpcout.open("output.txt",ios::out|ios::trunc);
+          mpcout.open("output.txt",ios::app|ios::out);//|ios::out|ios::trunc);
+          mpcout <<  msgJson.dump()<< ","<<j[0]<<j[1] << std::endl;
+          //mpcout <<  j[1] << std::endl;
          /* mpcout << "mpc_x"//<<","
           <<"mpc_y"//<<","
           
@@ -258,11 +260,13 @@ int main() {
           <<"steering_angle"<<","
           <<"throttle"<<","
           <<std::endl;*/
+          /*
           for(int i=0;i<11;++i){
           mpcout << msgJson["mpc_x"][i] <<" "//<<","
           <<msgJson["mpc_y"][i]//<<","
           <<std::endl;
-          }/*
+          }*/
+          /*
           for(int j=0;j<25;++j){
           mpcout <<msgJson["next_x"][j]<<","
           <<msgJson["next_y"][j]<<","
@@ -270,8 +274,9 @@ int main() {
           }
           mpcout<<msgJson["steering_angle"]<<","
           <<msgJson["steering_angle"]<<std::endl;*/
-          mpcout.close();
+          
           std::cout << msg << std::endl;
+          mpcout.close();
           // Latency
           // The purpose is to mimic real driving conditions where
           // the car doesn't actuate the commands instantly.
