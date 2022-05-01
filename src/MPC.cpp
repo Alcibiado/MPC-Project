@@ -38,7 +38,7 @@ const double Lf = 2.67;
 
 // Set desired speed for the cost function (i.e. max speed)
 //设置成本函数的期望速度（即最大速度）
-const double ref_v = 200;//120
+const double ref_v = 120;//120
 
 // The solver takes all the state variables and actuator
 // variables in a singular vector. Thus, we should to establish

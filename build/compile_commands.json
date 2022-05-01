@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/home/adol/bishe/MPC-Project/build",
+  "command": "/usr/bin/g++  -I/home/adol/bishe/MPC-Project/src/Eigen-3.3 -g   -std=c++11 -O3 -o CMakeFiles/mpc.dir/src/MPC.cpp.o -c /home/adol/bishe/MPC-Project/src/MPC.cpp",
+  "file": "/home/adol/bishe/MPC-Project/src/MPC.cpp"
+},
+{
+  "directory": "/home/adol/bishe/MPC-Project/build",
+  "command": "/usr/bin/g++  -I/home/adol/bishe/MPC-Project/src/Eigen-3.3 -g   -std=c++11 -O3 -o CMakeFiles/mpc.dir/src/main.cpp.o -c /home/adol/bishe/MPC-Project/src/main.cpp",
+  "file": "/home/adol/bishe/MPC-Project/src/main.cpp"
+}
+]

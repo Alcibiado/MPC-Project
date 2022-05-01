@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/adol/bishe/MPC-Project/src/Eigen-3.3
 
-CXX_FLAGS =   -std=c++11 -O3
+CXX_FLAGS = -g   -std=c++11 -O3
 
