@@ -272,9 +272,44 @@ int main() {
 
           auto msg = "42[\"steer\"," + msgJson.dump() + "]";
           //文件输出
-          ofstream  mpcout;
+          ofstream  mpcout,nextout,psiout,xyout,steerout,throttleout,upsi;
           mpcout.open("output.txt",ios::app|ios::out);//|ios::out|ios::trunc);
-          mpcout <<  msgJson.dump()<< ","<<j[0]<<j[1] << std::endl;
+          nextout.open("nextop.txt",ios::app|ios::out);
+          psiout.open("psiop.txt",ios::app|ios::out);
+          xyout.open("xyop.txt",ios::app|ios::out);
+          steerout.open("steerop.txt",ios::app|ios::out);
+          throttleout.open("throttleop.txt",ios::app|ios::out);
+          upsi.open("upsiop.txt",ios::app|ios::out);
+
+          //mpcout <<  msgJson.dump()<< ","<<j[0]<<"##"<<j[1] << std::endl;
+          
+          for(int i=0;i<11;++i){
+          mpcout << msgJson["mpc_x"][i] <<" " 
+          <<msgJson["mpc_y"][i] 
+          <<std::endl;
+          }
+          for(int i=0;i<24;++i){
+          nextout << msgJson["next_x"][i] <<" " 
+          <<msgJson["next_y"][i] 
+          <<std::endl;
+          }
+          for(int i=0;i<6;++i){
+          psiout << j[1]["ptsx"][i] <<" " 
+          <<j[1]["ptsy"][i] 
+          <<std::endl;
+          }
+          xyout <<j[1]["x"]<<" "<<j[1]["y"]<<std::endl;
+          steerout<<msgJson["steering_angle"]<<" "<<j[1]["steering_angle"]<<std::endl;
+          throttleout<<msgJson["throttle"]<<" "<<j[1]["throttle"]<<std::endl;
+          upsi<<j[1]["psi"]<<" "<<j[1]["psi"]<<std::endl;
+
+          mpcout.close();
+          nextout.close();
+          psiout.close();
+          xyout.close();
+          steerout.close();
+          throttleout.close();
+          upsi.close();
           //mpcout <<  j[1] << std::endl;
          /* mpcout << "mpc_x"//<<","
           <<"mpc_y"//<<","
@@ -300,7 +335,7 @@ int main() {
           <<msgJson["steering_angle"]<<std::endl;*/
           
           std::cout << msg << std::endl;
-          mpcout.close();
+          //mpcout.close();
           // Latency
           // The purpose is to mimic real driving conditions where
           // the car doesn't actuate the commands instantly.
