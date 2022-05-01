@@ -73,29 +73,29 @@ CMakeFiles/mpc.dir/src/MPC.cpp.o: CMakeFiles/mpc.dir/flags.make
 CMakeFiles/mpc.dir/src/MPC.cpp.o: ../src/MPC.cpp
 CMakeFiles/mpc.dir/src/MPC.cpp.o: CMakeFiles/mpc.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/adol/bishe/MPC-Project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/mpc.dir/src/MPC.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/mpc.dir/src/MPC.cpp.o -MF CMakeFiles/mpc.dir/src/MPC.cpp.o.d -o CMakeFiles/mpc.dir/src/MPC.cpp.o -c /home/adol/bishe/MPC-Project/src/MPC.cpp
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/mpc.dir/src/MPC.cpp.o -MF CMakeFiles/mpc.dir/src/MPC.cpp.o.d -o CMakeFiles/mpc.dir/src/MPC.cpp.o -c /home/adol/bishe/MPC-Project/src/MPC.cpp
 
 CMakeFiles/mpc.dir/src/MPC.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/mpc.dir/src/MPC.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/adol/bishe/MPC-Project/src/MPC.cpp > CMakeFiles/mpc.dir/src/MPC.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/adol/bishe/MPC-Project/src/MPC.cpp > CMakeFiles/mpc.dir/src/MPC.cpp.i
 
 CMakeFiles/mpc.dir/src/MPC.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/mpc.dir/src/MPC.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/adol/bishe/MPC-Project/src/MPC.cpp -o CMakeFiles/mpc.dir/src/MPC.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/adol/bishe/MPC-Project/src/MPC.cpp -o CMakeFiles/mpc.dir/src/MPC.cpp.s
 
 CMakeFiles/mpc.dir/src/main.cpp.o: CMakeFiles/mpc.dir/flags.make
 CMakeFiles/mpc.dir/src/main.cpp.o: ../src/main.cpp
 CMakeFiles/mpc.dir/src/main.cpp.o: CMakeFiles/mpc.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/adol/bishe/MPC-Project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/mpc.dir/src/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/mpc.dir/src/main.cpp.o -MF CMakeFiles/mpc.dir/src/main.cpp.o.d -o CMakeFiles/mpc.dir/src/main.cpp.o -c /home/adol/bishe/MPC-Project/src/main.cpp
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/mpc.dir/src/main.cpp.o -MF CMakeFiles/mpc.dir/src/main.cpp.o.d -o CMakeFiles/mpc.dir/src/main.cpp.o -c /home/adol/bishe/MPC-Project/src/main.cpp
 
 CMakeFiles/mpc.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/mpc.dir/src/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/adol/bishe/MPC-Project/src/main.cpp > CMakeFiles/mpc.dir/src/main.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/adol/bishe/MPC-Project/src/main.cpp > CMakeFiles/mpc.dir/src/main.cpp.i
 
 CMakeFiles/mpc.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/mpc.dir/src/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/adol/bishe/MPC-Project/src/main.cpp -o CMakeFiles/mpc.dir/src/main.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/adol/bishe/MPC-Project/src/main.cpp -o CMakeFiles/mpc.dir/src/main.cpp.s
 
 # Object files for target mpc
 mpc_OBJECTS = \

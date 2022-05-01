@@ -79,7 +79,31 @@ Eigen::VectorXd polyfit(Eigen::VectorXd xvals, Eigen::VectorXd yvals,
 
 int main() {
   uWS::Hub h;
+  //文件初始化
+  ofstream  mpcout,nextout,psiout,xyout,steerout,throttleout,upsi;
+  mpcout.open("output.txt",ios::out|ios::trunc);
+  nextout.open("nextop.txt",ios::out|ios::trunc);
+  psiout.open("psiop.txt",ios::out|ios::trunc);
+  xyout.open("xyop.txt",ios::out|ios::trunc);
+  steerout.open("steerop.txt",ios::out|ios::trunc);
+  throttleout.open("throttleop.txt",ios::out|ios::trunc);
+  upsi.open("upsiop.txt",ios::out|ios::trunc);
 
+  mpcout <<"0 0" <<std::endl;
+  nextout<<"0 0" <<std::endl;
+  psiout<<"0 0" <<std::endl;
+  xyout<<"0 0" <<std::endl;
+  steerout<<"0 0" <<std::endl;
+  throttleout<<"0 0" <<std::endl;
+  upsi<<"0 0" <<std::endl;
+
+  mpcout.close();
+  nextout.close();
+  psiout.close();
+  xyout.close();
+  steerout.close();
+  throttleout.close();
+  upsi.close();
   // MPC is initialized here!
   //这里初始化了MPC！
   MPC mpc;
