@@ -173,8 +173,8 @@ int main() {
           // Because points were transformed to vehicle coordinates, x & y equal 0 below.
           // 'y' would otherwise be subtracted from the polyeval value
           //计算交叉轨迹误差
-//因为点被转换为车辆坐标，所以x和y等于下面的0。
-//否则，“y”将从polyeval值中减去
+          //因为点被转换为车辆坐标，所以x和y等于下面的0。
+          //否则，“y”将从polyeval值中减去
           double cte = polyeval(coeffs, 0);
           
           // Calculate the orientation error
@@ -182,9 +182,9 @@ int main() {
           // Because x = 0 in the vehicle coordinates, the higher orders are zero
           // Leaves only coeffs[1]
           //计算定向误差
-//polyfit的导数在下面的atan（）中
-//因为在车辆坐标中x=0，所以高阶为零
-//只留下系数[1]
+          //polyfit的导数在下面的atan（）中
+          //因为在车辆坐标中x=0，所以高阶为零
+          //只留下系数[1]
 
           double epsi = -atan(coeffs[1]);
           
@@ -199,10 +199,12 @@ int main() {
           // Predict state after latency
           // x, y and psi are all zero after transformation above
           //预测延迟后的状态
-//变换后x和y都大于零
-          double pred_px = 0.0 + v * dt; // Since psi is zero, cos(0) = 1, can leave out//由于psi为零，cos（0）=1可以省略
+          //变换后x和y都大于零
+          double pred_px = 0.0 + v * dt; 
+          // Since psi is zero, cos(0) = 1, can leave out//由于psi为零，cos（0）=1可以省略
  
-          const double pred_py = 0.0; // Since sin(0) = 0, y stays as 0 (y + v * 0 * dt)//由于sin（0）=0，y保持为0（y+v*0*dt）
+          const double pred_py = 0.0; 
+          // Since sin(0) = 0, y stays as 0 (y + v * 0 * dt)//由于sin（0）=0，y保持为0（y+v*0*dt）
           double pred_psi = 0.0 + v * -delta / Lf * dt;
           double pred_v = v + a * dt;
           double pred_cte = cte + v * sin(epsi) * dt;
@@ -221,8 +223,8 @@ int main() {
           // Steering must be divided by deg2rad(25) to normalize within [-1, 1].
           // Multiplying by Lf takes into account vehicle's turning ability
           //计算转向和油门
-//转向必须除以deg2rad（25）才能在[-1,1]范围内正常化。
-//乘以Lf会考虑车辆的转向能力
+          //转向必须除以deg2rad（25）才能在[-1,1]范围内正常化。
+          //乘以Lf会考虑车辆的转向能力
           double steer_value = vars[0] / (deg2rad(25) * Lf);
           double throttle_value = vars[1];
           
@@ -240,7 +242,7 @@ int main() {
           // add (x,y) points to list here, points are in reference to the vehicle's coordinate system
           // the points in the simulator are connected by a Green line
           //在此处添加（x，y）点，这些点参照车辆坐标系
-//模拟器中的点通过绿线连接
+          //模拟器中的点通过绿线连接
           
           for (int i = 2; i < vars.size(); i+=2) {
             mpc_x_vals.push_back(vars[i]);
@@ -258,7 +260,7 @@ int main() {
           // add (x,y) points to list here, points are in reference to the vehicle's coordinate system
           // the points in the simulator are connected by a Yellow line
           //在此处添加（x，y）点，这些点参照车辆坐标系
-//模拟器中的点由一条黄线连接
+          //模拟器中的点由一条黄线连接
           double poly_inc = 2.5;
           int num_points = 25;
           
@@ -340,8 +342,8 @@ int main() {
           // The purpose is to mimic real driving conditions where
           // the car doesn't actuate the commands instantly.
           //潜伏期
-//其目的是模拟真实的驾驶条件
-//汽车不会立即启动指令。
+          //其目的是模拟真实的驾驶条件
+          //汽车不会立即启动指令。
           this_thread::sleep_for(chrono::milliseconds(100));
           ws.send(msg.data(), msg.length(), uWS::OpCode::TEXT);
         }
@@ -357,9 +359,9 @@ int main() {
   // We don't need this since we're not using HTTP but if it's removed the
   // program
   // doesn't compile :-(
-    //我们不需要这个，因为我们不使用HTTP，但是如果它被删除了
-//节目
-//不编译：-(
+  //我们不需要这个，因为我们不使用HTTP，但是如果它被删除了
+  //节目
+  //不编译：-(
   h.onHttpRequest([](uWS::HttpResponse *res, uWS::HttpRequest req, char *data,
                      size_t, size_t) {
     const std::string s = "<h1>Hello world!</h1>";
