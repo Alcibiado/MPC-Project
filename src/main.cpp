@@ -97,6 +97,7 @@ int main() {
                       speedout,//dq_sudu
                       mpcout,
                       nextout,
+                      xyout, 
                       ptsout;
   mpcxout.open("mpcxout.txt",ios::out|ios::trunc);
   mpcyout.open("mpcyout.txt",ios::out|ios::trunc);
@@ -117,6 +118,7 @@ int main() {
   saout.open("saout.txt",ios::out|ios::trunc);
   tout.open("tout.txt",ios::out|ios::trunc);
   speedout.open("speedout.txt",ios::out|ios::trunc);
+  xyout.open("xyout.txt",ios::out|ios::trunc);
 
   mpcxout  <<"0 0" <<std::endl;
                       mpcyout  <<"0 0" <<std::endl;
@@ -136,7 +138,7 @@ int main() {
                       mpcout <<"0 0" <<std::endl;
                       nextout <<"0 0" <<std::endl;
                       ptsout <<"0 0" <<std::endl;
-
+                      xyout <<"0 0" <<std::endl;
 
 mpcxout .close();
 mpcyout .close();
@@ -156,6 +158,7 @@ nextxout .close();
                       mpcout .close();
                       nextout .close();
                       ptsout .close();
+                      xyout .close();
 
 
   
@@ -366,7 +369,8 @@ nextxout .close();
                       speedout,//dq_sudu
                       mpcout,
                       nextout,
-                      ptsout;
+                      ptsout,
+                      xyout;
           mpcxout.open("mpcxout.txt",ios::app|ios::out);
   mpcyout.open("mpcyout.txt",ios::app|ios::out);
   nextxout.open("nextxout.txt",ios::app|ios::out);
@@ -386,20 +390,27 @@ nextxout .close();
     mpcout.open("mpcout.txt",ios::app|ios::out);
   nextout.open("nextout.txt",ios::app|ios::out);
   ptsout.open("ptsout.txt",ios::app|ios::out);
+  xyout.open("xyout.txt",ios::app|ios::out);
 
           
           sta = sta + 1;
           //mpcout <<  msgJson.dump()<< ","<<j[0]<<"##"<<j[1] << std::endl;   
     for(int i=0;i<11;++i){
-          mpcxout   <<sta<<" "<<msgJson["mpc_x"][i] <<std::endl;
-          mpcyout  <<sta<<" "<<msgJson["mpc_y"][i] <<std::endl;         
+          //mpcxout   <<sta<<" "<<msgJson["mpc_x"][i] <<std::endl;
+          //mpcyout  <<sta<<" "<<msgJson["mpc_y"][i] <<std::endl;
+          mpcout <<msgJson["mpc_x"][i]<<" "<<msgJson["mpc_y"][i] <<std::endl;          
           }
-          mpcout <<msgJson["mpc_x"][0]<<" "<<msgJson["mpc_y"][0] <<std::endl;         
+        mpcxout   <<sta<<" "<<msgJson["mpc_x"][3] <<std::endl;
+        mpcyout  <<sta<<" "<<msgJson["mpc_y"][3] <<std::endl;
+          //mpcout <<msgJson["mpc_x"][2]<<" "<<msgJson["mpc_y"][2] <<std::endl;         
           for(int i=0;i<24;++i){
-             nextxout    <<sta<<" "<<msgJson["next_x"][i] <<std::endl;
-            nextyout    <<sta<<" "<<msgJson["next_y"][i]  <<std::endl;          
+             //nextxout    <<sta<<" "<<msgJson["next_x"][i] <<std::endl;
+           // nextyout    <<sta<<" "<<msgJson["next_y"][i]  <<std::endl;  
+            nextout <<msgJson["next_x"][i]<<" "<<msgJson["next_y"][i] <<std::endl;         
           }
-          nextout <<msgJson["next_x"][0]<<" "<<msgJson["next_y"][0] <<std::endl;    
+            nextxout    <<sta<<" "<<msgJson["next_x"][11] <<std::endl;
+            nextyout    <<sta<<" "<<msgJson["next_y"][11]  <<std::endl;
+          //nextout <<msgJson["next_x"][1]<<" "<<msgJson["next_y"][1] <<std::endl;    
           for(int i=0;i<6;++i){
              ptsxout     << sta<<" "<< j[1]["ptsx"][i] <<std::endl;
              ptsyout     << sta<<" "<<j[1]["ptsy"][i]   <<std::endl;           
@@ -413,7 +424,7 @@ nextxout .close();
            tout  <<sta<<" "<<j[1]["throttle"]  <<std::endl; 
          upsiout  <<sta<<" "<<j[1]["psi_unity"]  <<std::endl;
             psiout   <<sta<<" "<<j[1]["psi"]  <<std::endl;
-          
+            xyout  <<j[1]["x"]<<" "<<j[1]["y"] <<std::endl;    
           speedout<<sta<<" "<<j[1]["speed"]<<std::endl;
 
        mpcxout .close();
@@ -434,6 +445,7 @@ nextxout .close();
                       mpcout .close();
                       nextout .close();
                       ptsout .close();
+                      xyout.close();
           //mpcout <<  j[1] << std::endl;
          /* mpcout << "mpc_x"//<<","
           <<"mpc_y"//<<","

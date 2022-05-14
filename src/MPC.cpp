@@ -81,13 +81,13 @@ class FG_eval {
     // Weights for how "important" each cost is - can be tuned
     //每个成本的“重要性”权重可以调整
  
-    const int cte_cost_weight = 2000;
-    const int epsi_cost_weight = 2000;
-    const int v_cost_weight = 1;
-    const int delta_cost_weight = 10;
-    const int a_cost_weight = 10;
-    const int delta_change_cost_weight = 100;
-    const int a_change_cost_weight = 10;
+    const int cte_cost_weight = 2000;//2000
+    const int epsi_cost_weight = 2000;//2000
+    const int v_cost_weight = 1;//1
+    const int delta_cost_weight = 10;//10
+    const int a_cost_weight = 10;//10
+    const int delta_change_cost_weight = 100;//100
+    const int a_change_cost_weight = 10;//10
     
     // Cost for CTE, psi error and velocity
     //CTE、psi误差和速度的成本
