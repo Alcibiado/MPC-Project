@@ -10,8 +10,8 @@ using CppAD::AD;
 // Currently tuned to predict 1 second worth
 //设置时间步长长度和持续时间
 //目前已调整为预测1秒价值
-size_t N = 10;//10
-double dt = 0.1;//0.1
+size_t N = 10;//10,15
+double dt = 0.15;//0.1,0.2
 
 // This value assumes the model presented in the classroom is used.
 //

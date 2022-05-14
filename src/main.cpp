@@ -22,7 +22,7 @@ using json = nlohmann::json;
 constexpr double pi() { return M_PI; }
 double deg2rad(double x) { return x * pi() / 180; }
 double rad2deg(double x) { return x * 180 / pi(); }
-
+static int sta=0;
 // Checks if the SocketIO event has JSON data.
 // If there is data the JSON object in string format will be returned,
 // else the empty string "" will be returned.
@@ -80,30 +80,85 @@ Eigen::VectorXd polyfit(Eigen::VectorXd xvals, Eigen::VectorXd yvals,
 int main() {
   uWS::Hub h;
   //文件初始化
-  ofstream  mpcout,nextout,psiout,xyout,steerout,throttleout,upsi;
-  mpcout.open("output.txt",ios::out|ios::trunc);
-  nextout.open("nextop.txt",ios::out|ios::trunc);
-  psiout.open("psiop.txt",ios::out|ios::trunc);
-  xyout.open("xyop.txt",ios::out|ios::trunc);
-  steerout.open("steerop.txt",ios::out|ios::trunc);
-  throttleout.open("throttleop.txt",ios::out|ios::trunc);
-  upsi.open("upsiop.txt",ios::out|ios::trunc);
+  ofstream  mpcxout,//mpc_yuce
+                      mpcyout,//mpc_yuce
+                      nextxout,//cankao
+                      nextyout,//cankao
+                      msaout,//mpcshuchu_zhuanjiao
+                      mtout,//mpcshuchu_a
+                      ptsxout,//shijielujinzuobiao
+                      ptsyout,//shijielujinzuobiao
+                      upsiout,
+                      psiout,//hengbaijiao
+                      xout,//dqx
+                      yout,//dqy
+                      saout,//dqzhuanjiao
+                      tout,//dq_a
+                      speedout,//dq_sudu
+                      mpcout,
+                      nextout,
+                      ptsout;
+  mpcxout.open("mpcxout.txt",ios::out|ios::trunc);
+  mpcyout.open("mpcyout.txt",ios::out|ios::trunc);
+  nextxout.open("nextxout.txt",ios::out|ios::trunc);
+ nextyout.open("nextyout.txt",ios::out|ios::trunc);
+  msaout.open("msaout.txt",ios::out|ios::trunc);
+  mtout.open("mtout.txt",ios::out|ios::trunc);
+  ptsxout.open("ptsxout.txt",ios::out|ios::trunc);
+  ptsyout.open("ptsyout.txt",ios::out|ios::trunc);
+  mpcout.open("mpcout.txt",ios::out|ios::trunc);
+  nextout.open("nextout.txt",ios::out|ios::trunc);
+  ptsout.open("ptsout.txt",ios::out|ios::trunc);
 
-  mpcout <<"0 0" <<std::endl;
-  nextout<<"0 0" <<std::endl;
-  psiout<<"0 0" <<std::endl;
-  xyout<<"0 0" <<std::endl;
-  steerout<<"0 0" <<std::endl;
-  throttleout<<"0 0" <<std::endl;
-  upsi<<"0 0" <<std::endl;
+  upsiout.open("upsiout.txt",ios::out|ios::trunc);
+  psiout.open("psiout.txt",ios::out|ios::trunc);
+ xout.open("xout.txt",ios::out|ios::trunc);
+  yout.open("yout.txt",ios::out|ios::trunc);
+  saout.open("saout.txt",ios::out|ios::trunc);
+  tout.open("tout.txt",ios::out|ios::trunc);
+  speedout.open("speedout.txt",ios::out|ios::trunc);
 
-  mpcout.close();
-  nextout.close();
-  psiout.close();
-  xyout.close();
-  steerout.close();
-  throttleout.close();
-  upsi.close();
+  mpcxout  <<"0 0" <<std::endl;
+                      mpcyout  <<"0 0" <<std::endl;
+                      nextxout  <<"0 0" <<std::endl;
+                      nextyout  <<"0 0" <<std::endl;
+                      msaout  <<"0 0" <<std::endl;
+                      mtout  <<"0 0" <<std::endl;
+                      ptsxout  <<"0 0" <<std::endl;
+                      ptsyout  <<"0 0" <<std::endl;
+                      upsiout  <<"0 0" <<std::endl;
+                      psiout  <<"0 0" <<std::endl;
+                      xout  <<"0 0" <<std::endl;
+                      yout  <<"0 0" <<std::endl;
+                      saout  <<"0 0" <<std::endl;
+                      tout  <<"0 0" <<std::endl;
+                      speedout  <<"0 0" <<std::endl;
+                      mpcout <<"0 0" <<std::endl;
+                      nextout <<"0 0" <<std::endl;
+                      ptsout <<"0 0" <<std::endl;
+
+
+mpcxout .close();
+mpcyout .close();
+nextxout .close();
+                      nextyout .close();
+                      msaout .close();
+                      mtout .close();
+                      ptsxout .close();
+                      ptsyout .close();
+                      upsiout .close();
+                      psiout .close();
+                      xout .close();
+                      yout .close();
+                      saout .close();
+                      tout .close();
+                      speedout  .close();
+                      mpcout .close();
+                      nextout .close();
+                      ptsout .close();
+
+
+  
   // MPC is initialized here!
   //这里初始化了MPC！
   MPC mpc;
@@ -176,7 +231,18 @@ int main() {
 //因为点被转换为车辆坐标，所以x和y等于下面的0。
 //否则，“y”将从polyeval值中减去
           double cte = polyeval(coeffs, 0);
-          
+          ofstream re_cte;
+          if(sta <= 0){
+          re_cte.open("re_cte.txt",ios::out|ios::trunc);
+          re_cte  <<"0 0" <<std::endl;
+          re_cte.close();
+          }
+          else{
+          re_cte.open("re_cte.txt",ios::app|ios::out);
+          re_cte   <<sta<<" "<<cte <<std::endl;
+          re_cte.close();
+          }
+         
           // Calculate the orientation error
           // Derivative of the polyfit goes in atan() below
           // Because x = 0 in the vehicle coordinates, the higher orders are zero
@@ -187,7 +253,17 @@ int main() {
 //只留下系数[1]
 
           double epsi = -atan(coeffs[1]);
-          
+          ofstream re_epsi;
+          if(sta <= 0){
+          re_epsi.open("re_epsi.txt",ios::out|ios::trunc);
+          re_epsi  <<"0 0" <<std::endl;
+          re_epsi.close();
+          }
+          else{
+          re_epsi.open("re_epsi.txt",ios::app|ios::out);
+          re_epsi   <<sta<<" "<<epsi <<std::endl;
+          re_epsi.close();
+          }
           // Center of gravity needed related to psi and epsi
           //需要与psi和epsi相关的重心
           const double Lf = 2.67;
@@ -272,44 +348,92 @@ int main() {
 
           auto msg = "42[\"steer\"," + msgJson.dump() + "]";
           //文件输出
-          ofstream  mpcout,nextout,psiout,xyout,steerout,throttleout,upsi;
-          mpcout.open("output.txt",ios::app|ios::out);//|ios::out|ios::trunc);
-          nextout.open("nextop.txt",ios::app|ios::out);
-          psiout.open("psiop.txt",ios::app|ios::out);
-          xyout.open("xyop.txt",ios::app|ios::out);
-          steerout.open("steerop.txt",ios::app|ios::out);
-          throttleout.open("throttleop.txt",ios::app|ios::out);
-          upsi.open("upsiop.txt",ios::app|ios::out);
+          //ofstream  mpcout,nextout,psiout,xyout,steerout,throttleout,upsi,speedout;
+           ofstream  mpcxout,//mpc_yuce
+                      mpcyout,//mpc_yuce
+                      nextxout,//cankao
+                      nextyout,//cankao
+                      msaout,//mpcshuchu_zhuanjiao
+                      mtout,//mpcshuchu_a
+                      ptsxout,//shijielujinzuobiao
+                      ptsyout,//shijielujinzuobiao
+                      upsiout,
+                      psiout,//hengbaijiao
+                      xout,//dqx
+                      yout,//dqy
+                      saout,//dqzhuanjiao
+                      tout,//dq_a
+                      speedout,//dq_sudu
+                      mpcout,
+                      nextout,
+                      ptsout;
+          mpcxout.open("mpcxout.txt",ios::app|ios::out);
+  mpcyout.open("mpcyout.txt",ios::app|ios::out);
+  nextxout.open("nextxout.txt",ios::app|ios::out);
+ nextyout.open("nextyout.txt",ios::app|ios::out);
+  msaout.open("msaout.txt",ios::app|ios::out);
+  mtout.open("mtout.txt",ios::app|ios::out);
+  ptsxout.open("ptsxout.txt",ios::app|ios::out);
+  ptsyout.open("ptsyout.txt",ios::app|ios::out);
 
-          //mpcout <<  msgJson.dump()<< ","<<j[0]<<"##"<<j[1] << std::endl;
+  upsiout.open("upsiout.txt",ios::app|ios::out);
+  psiout.open("psiout.txt",ios::app|ios::out);
+ xout.open("xout.txt",ios::app|ios::out);
+  yout.open("yout.txt",ios::app|ios::out);
+  saout.open("saout.txt",ios::app|ios::out);
+  tout.open("tout.txt",ios::app|ios::out);
+  speedout.open("speedout.txt",ios::app|ios::out);
+    mpcout.open("mpcout.txt",ios::app|ios::out);
+  nextout.open("nextout.txt",ios::app|ios::out);
+  ptsout.open("ptsout.txt",ios::app|ios::out);
+
           
-          for(int i=0;i<11;++i){
-          mpcout << msgJson["mpc_x"][i] <<" " 
-          <<msgJson["mpc_y"][i] 
-          <<std::endl;
+          sta = sta + 1;
+          //mpcout <<  msgJson.dump()<< ","<<j[0]<<"##"<<j[1] << std::endl;   
+    for(int i=0;i<11;++i){
+          mpcxout   <<sta<<" "<<msgJson["mpc_x"][i] <<std::endl;
+          mpcyout  <<sta<<" "<<msgJson["mpc_y"][i] <<std::endl;         
           }
+          mpcout <<msgJson["mpc_x"][0]<<" "<<msgJson["mpc_y"][0] <<std::endl;         
           for(int i=0;i<24;++i){
-          nextout << msgJson["next_x"][i] <<" " 
-          <<msgJson["next_y"][i] 
-          <<std::endl;
+             nextxout    <<sta<<" "<<msgJson["next_x"][i] <<std::endl;
+            nextyout    <<sta<<" "<<msgJson["next_y"][i]  <<std::endl;          
           }
+          nextout <<msgJson["next_x"][0]<<" "<<msgJson["next_y"][0] <<std::endl;    
           for(int i=0;i<6;++i){
-          psiout << j[1]["ptsx"][i] <<" " 
-          <<j[1]["ptsy"][i] 
-          <<std::endl;
+             ptsxout     << sta<<" "<< j[1]["ptsx"][i] <<std::endl;
+             ptsyout     << sta<<" "<<j[1]["ptsy"][i]   <<std::endl;           
           }
-          xyout <<j[1]["x"]<<" "<<j[1]["y"]<<std::endl;
-          steerout<<msgJson["steering_angle"]<<" "<<j[1]["steering_angle"]<<std::endl;
-          throttleout<<msgJson["throttle"]<<" "<<j[1]["throttle"]<<std::endl;
-          upsi<<j[1]["psi"]<<" "<<j[1]["psi"]<<std::endl;
+        ptsout <<j[1]["ptsx"][0]<<" "<<j[1]["ptsy"][0] <<std::endl;    
+          xout     << sta<<" "<< j[1]["x"] <<std::endl;
+           yout   << sta<<" "<<j[1]["y"]   <<std::endl; 
+          msaout  << sta<<" "<<msgJson["steering_angle"]  <<std::endl; 
+          saout   << sta<<" "<<j[1]["steering_angle"] <<std::endl; 
+          mtout <<sta<<" "<<msgJson["throttle"]  <<std::endl; 
+           tout  <<sta<<" "<<j[1]["throttle"]  <<std::endl; 
+         upsiout  <<sta<<" "<<j[1]["psi_unity"]  <<std::endl;
+            psiout   <<sta<<" "<<j[1]["psi"]  <<std::endl;
+          
+          speedout<<sta<<" "<<j[1]["speed"]<<std::endl;
 
-          mpcout.close();
-          nextout.close();
-          psiout.close();
-          xyout.close();
-          steerout.close();
-          throttleout.close();
-          upsi.close();
+       mpcxout .close();
+mpcyout .close();
+nextxout .close();
+                      nextyout .close();
+                      msaout .close();
+                      mtout .close();
+                      ptsxout .close();
+                      ptsyout .close();
+                      upsiout .close();
+                      psiout .close();
+                      xout .close();
+                      yout .close();
+                      saout .close();
+                      tout .close();
+                      speedout  .close();
+                      mpcout .close();
+                      nextout .close();
+                      ptsout .close();
           //mpcout <<  j[1] << std::endl;
          /* mpcout << "mpc_x"//<<","
           <<"mpc_y"//<<","
